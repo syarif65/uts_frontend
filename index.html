@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriManage - Manajemen Pertanian</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div>
+                <h2>AgriManage</h2>
+                <small>Farm Management</small>
+            </div>
+        </div>
+
+        <nav>
+            <button class="nav-link active" data-page="dashboard">
+                Dashboard
+            </button>
+            <button class="nav-link" data-page="lahan">
+                Data Lahan
+            </button>
+            <button class="nav-link" data-page="tanaman">
+                Data Tanaman
+            </button>
+            <button class="nav-link" data-page="panen">
+                Data Panen
+            </button>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="avatar">AM</div>
+            <div>
+                <strong>Administrator</strong>
+                <small>Pengelola Pertanian</small>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main">
+
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">SISTEM INFORMASI PERTANIAN</p>
+                <h1 id="page-title">Dashboard</h1>
+            </div>
+
+            <div class="top-actions">
+                <span id="today"></span>
+                <div class="avatar">AM</div>
+            </div>
+        </header>
+
+        <!-- DASHBOARD -->
+        <section id="dashboard-page" class="page">
+
+            <div class="welcome">
+                <div>
+                    <h2>Selamat datang di AgriManage </h2>
+                    <p>
+                        Pantau dan kelola data lahan serta tanaman
+                        Anda dalam satu tempat.
+                    </p>
+                </div>
+            </div>
+
+            <div class="stats">
+
+                <article class="stat-card">
+                    <p>Total Lahan</p>
+                    <strong id="stat-lahan">0</strong>
+                    <small>Bidang lahan terdaftar</small>
+                </article>
+
+                <article class="stat-card">
+                    <p>Total Tanaman</p>
+                    <strong id="stat-tanaman">0</strong>
+                    <small>Jenis tanaman terdata</small>
+                </article>
+
+                <article class="stat-card">
+                    <p>Luas Lahan</p>
+                    <strong id="stat-luas">0 <small>Ha</small></strong>
+                    <small>Total luas terkelola</small>
+                </article>
+
+                <article class="stat-card">
+                    <p>Siap Panen</p>
+                    <strong id="stat-panen">0</strong>
+                    <small>Tanaman siap dipanen</small>
+                </article>
+
+            </div>
+
+            <div class="content-grid">
+
+                <section class="panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h3>Data Lahan Terbaru</h3>
+                            <p>Ringkasan lahan yang dikelola</p>
+                        </div>
+                        <button class="text-button" data-goto="lahan">
+                            Lihat semua →
+                        </button>
+                    </div>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nama Lahan</th>
+                                    <th>Lokasi</th>
+                                    <th>Luas</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dashboard-lahan"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h3>Aktivitas Tanaman</h3>
+                            <p>Status tanaman saat ini</p>
+                        </div>
+                        <button class="text-button" data-goto="tanaman">
+                            Lihat semua →
+                        </button>
+                    </div>
+
+                    <div id="dashboard-tanaman" class="activity-list"></div>
+                </section>
+
+            </div>
+        </section>
+
+        <!-- DATA LAHAN -->
+        <section id="lahan-page" class="page hidden">
+
+            <div class="section-toolbar">
+                <div>
+                    <h2>Data Lahan</h2>
+                    <p>Kelola informasi lahan pertanian Anda.</p>
+                </div>
+
+                <button class="primary-btn" id="add-lahan">
+                    + Tambah Lahan
+                </button>
+            </div>
+
+            <div class="panel">
+                <div class="table-toolbar">
+                    <input
+                        id="search-lahan"
+                        placeholder="Cari nama atau lokasi lahan..."
+                    >
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Lahan</th>
+                                <th>Lokasi</th>
+                                <th>Luas (Ha)</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lahan-table"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- DATA TANAMAN -->
+        <section id="tanaman-page" class="page hidden">
+
+            <div class="section-toolbar">
+                <div>
+                    <h2>Data Tanaman</h2>
+                    <p>Kelola tanaman dan jadwal tanam.</p>
+                </div>
+
+                <button class="primary-btn" id="add-tanaman">
+                    + Tambah Tanaman
+                </button>
+            </div>
+
+            <div class="panel">
+                <div class="table-toolbar">
+                    <input
+                        id="search-tanaman"
+                        placeholder="Cari nama tanaman atau lahan..."
+                    >
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Tanaman</th>
+                                <th>Jenis</th>
+                                <th>Lahan</th>
+                                <th>Tanggal Tanam</th>
+                                <th>Jumlah</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tanaman-table"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- DATA PANEN -->
+        <section id="panen-page" class="page hidden">
+
+            <div class="section-toolbar">
+                <div>
+                    <h2>Data Panen</h2>
+                    <p>Daftar tanaman yang siap atau telah dipanen.</p>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tanaman</th>
+                                <th>Lahan</th>
+                                <th>Tanggal Tanam</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="panen-table"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            © 2026 AgriManage · Sistem Manajemen Data Lahan dan Tanaman
+        </footer>
+
+    </main>
+
+    <!-- FORM TAMBAH DAN EDIT -->
+    <dialog id="data-dialog">
+        <form id="data-form" novalidate>
+
+            <div class="dialog-heading">
+                <h2 id="dialog-title">Tambah Data</h2>
+                <button type="button" class="close-btn" id="close-dialog">
+                    ×
+                </button>
+            </div>
+
+            <div id="form-fields"></div>
+
+            <div id="dialog-message" class="form-message"></div>
+
+            <div class="dialog-actions">
+                <button type="button" class="secondary-btn" id="cancel-dialog">
+                    Batal
+                </button>
+                <button type="submit" class="primary-btn">
+                    Simpan Data
+                </button>
+            </div>
+
+        </form>
+    </dialog>
+
+    <!-- NOTIFIKASI -->
+    <div id="toast" class="toast hidden"></div>
+
+    <!--
+        Script ES Module hanya bisa dimuat lewat http:// (server lokal).
+        Jika dibuka langsung lewat file://, skrip di bawah menampilkan peringatan.
+    -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(function () {
+                if (window.agriManageReady) return;
+
+                var banner = document.createElement("div");
+                banner.className = "module-warning";
+                banner.innerHTML =
+                    "<strong>Skrip aplikasi belum berjalan.</strong> " +
+                    "Buka halaman ini lewat server lokal, misalnya dengan " +
+                    "ekstensi <em>Live Server</em> di VS Code, atau jalankan " +
+                    "<code>python -m http.server</code> " +
+                    "di dalam folder <code>frontend</code>.";
+                document.body.appendChild(banner);
+            }, 1500);
+        });
+    </script>
+
+    <script type="module" src="js/main.js"></script>
+
+</body>
+</html>
